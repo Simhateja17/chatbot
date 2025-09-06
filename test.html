@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test</title>
+</head>
+<body>
+    <h1>Chatbot Test</h1>
+    <div id="test-output"></div>
+    
+    <script src="config.js"></script>
+    <script src="indian-info.js"></script>
+    <script src="film-facts.js"></script>
+    <script src="developer-resources.js"></script>
+    <script>
+        // Simple test to check if all dependencies load correctly
+        document.addEventListener('DOMContentLoaded', () => {
+            const output = document.getElementById('test-output');
+            const results = [];
+            
+            // Test CONFIG
+            if (typeof CONFIG !== 'undefined') {
+                results.push('✅ CONFIG loaded successfully');
+            } else {
+                results.push('❌ CONFIG failed to load');
+            }
+            
+            // Test IndianInfo
+            if (typeof IndianInfo !== 'undefined') {
+                results.push('✅ IndianInfo loaded successfully');
+            } else {
+                results.push('❌ IndianInfo failed to load');
+            }
+            
+            // Test FilmFacts
+            if (typeof FilmFacts !== 'undefined') {
+                results.push('✅ FilmFacts loaded successfully');
+            } else {
+                results.push('❌ FilmFacts failed to load');
+            }
+            
+            // Test DeveloperResources
+            if (typeof DeveloperResources !== 'undefined') {
+                results.push('✅ DeveloperResources loaded successfully');
+            } else {
+                results.push('❌ DeveloperResources failed to load');
+            }
+            
+            // Test API configuration
+            if (CONFIG && CONFIG.API_KEY && CONFIG.API_ENDPOINTS) {
+                results.push('✅ API configuration is valid');
+            } else {
+                results.push('❌ API configuration is invalid');
+            }
+            
+            output.innerHTML = '<h2>Dependency Test Results:</h2><ul>' + 
+                results.map(result => `<li>${result}</li>`).join('') + 
+                '</ul>';
+        });
+    </script>
+</body>
+</html>

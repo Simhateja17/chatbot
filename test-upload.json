@@ -1,0 +1,20 @@
+{
+  "name": "Sample Data",
+  "version": "1.0.0",
+  "description": "Test JSON file for chatbot upload functionality",
+  "features": [
+    "JSON parsing",
+    "Data structure analysis",
+    "Content extraction"
+  ],
+  "config": {
+    "enabled": true,
+    "maxFileSize": "10MB",
+    "supportedTypes": ["txt", "json", "csv", "md"]
+  },
+  "statistics": {
+    "totalUploads": 0,
+    "successRate": 100,
+    "averageFileSize": "2.5KB"
+  }
+}
