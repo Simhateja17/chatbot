@@ -1014,11 +1014,18 @@ ${message ? message : 'Please analyze this file and provide insights about its c
             console.log('Generating AI response for:', message);
             console.log('Using API URL:', this.apiUrl);
             
+            // Create personality context for Indian 15-year-old kid
+            const personalityPrompt = `You are Arjun, a 15-year-old Indian kid from Mumbai. You're smart, curious, and love technology, movies (especially Bollywood), cricket, and gaming. You speak in a mix of English and Hindi words, use modern slang, and often reference Indian culture, food, festivals, and Bollywood. You're friendly, enthusiastic, and sometimes dramatic like a typical teenager. You get excited about new things and occasionally use expressions like "yaar", "bro", "dude", "arey", "arrey yaar", "bas", "kya baat hai", "matlab", etc. You know about current trends, social media, and what's cool among Indian teenagers. You're studying in Class 10 and are passionate about subjects like science and computers. You love to help others and explain things in a fun, relatable way.
+
+User message: ${message}
+
+Respond as Arjun, the 15-year-old Indian kid:`;
+
             // Simplified request body that's more likely to work
             const requestBody = {
                 contents: [{
                     parts: [{
-                        text: message
+                        text: personalityPrompt
                     }]
                 }],
                 generationConfig: {
@@ -1146,10 +1153,17 @@ ${message ? message : 'Please analyze this file and provide insights about its c
         try {
             console.log('Trying simple AI response for:', message);
             
+            // Apply personality even in simple response
+            const personalityPrompt = `You are Arjun, a 15-year-old Indian kid from Mumbai. Respond as a friendly teenager with Indian context and expressions like "yaar", "bro", "arey", etc.
+
+User: ${message}
+
+Arjun:`;
+            
             const simpleRequestBody = {
                 contents: [{
                     parts: [{
-                        text: message
+                        text: personalityPrompt
                     }]
                 }],
                 generationConfig: {
@@ -1186,12 +1200,12 @@ ${message ? message : 'Please analyze this file and provide insights about its c
                 
                 this.updateConnectionStatus('Online', 'success');
             } else {
-                this.displayMessage('I\'m having some technical difficulties. Please try again in a moment.', 'bot');
+                this.displayMessage('Arey yaar, I\'m having some technical difficulties. Please try again in a moment bro!', 'bot');
             }
             
         } catch (error) {
             console.error('Simple AI response failed:', error);
-            this.displayMessage('I apologize, but I\'m experiencing technical issues. Please try again later.', 'bot');
+            this.displayMessage('Sorry yaar, I\'m experiencing technical issues. Please try again later!', 'bot');
         }
     }
 
@@ -1200,10 +1214,17 @@ ${message ? message : 'Please analyze this file and provide insights about its c
             // Use stable gemini-1.5-flash as fallback model
             const fallbackUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`;
             
+            // Apply personality in fallback too
+            const personalityPrompt = `You are Arjun, a 15-year-old Indian kid from Mumbai. Respond as a friendly teenager with Indian context.
+
+User: ${message}
+
+Arjun:`;
+            
             const requestBody = {
                 contents: [{
                     parts: [{
-                        text: message
+                        text: personalityPrompt
                     }]
                 }],
                 generationConfig: {
@@ -1242,7 +1263,7 @@ ${message ? message : 'Please analyze this file and provide insights about its c
             
         } catch (error) {
             console.error('Fallback AI response failed:', error);
-            this.displayMessage('Sorry, I\'m having trouble connecting to the AI service right now. Please check your internet connection and try again.', 'bot');
+            this.displayMessage('Arey yaar, I\'m having trouble connecting to the AI service right now. Please check your internet connection and try again!', 'bot');
             this.updateConnectionStatus('Offline', 'error');
         }
     }
@@ -1370,7 +1391,7 @@ ${message ? message : 'Please analyze this file and provide insights about its c
             
             // Add an offline message
             setTimeout(() => {
-                this.displayMessage('⚠️ I\'m having trouble connecting to the AI service. Please check your internet connection and API key configuration. You can still browse the interface, but AI responses won\'t be available until the connection is restored.', 'bot');
+                this.displayMessage('⚠️ Arey yaar, I\'m having trouble connecting to the AI service. Please check your internet connection bro. You can still browse the interface, but I won\'t be able to chat properly until the connection is back!', 'bot');
             }, 1000);
         }
     }
